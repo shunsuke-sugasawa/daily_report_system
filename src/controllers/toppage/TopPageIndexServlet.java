@@ -2,8 +2,11 @@ package controllers.toppage;
 
 import java.io.IOException;
 
+import javax.servlet.FilterChain;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -24,12 +27,17 @@ public class TopPageIndexServlet extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-        /**
-         * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-         */
+    /**
+     * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
+     */
         protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-                RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/topPage/index.jsp");
-                rd.forward(request, response);
-        }
+    if(request.getSession().getAttribute("flush") != null) {
+        request.setAttribute("flush", request.getSession().getAttribute("flush"));
+        request.getSession().removeAttribute("flush");
+    }
+
+    RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/topPage/index.jsp");
+    rd.forward(request, response);
+}
 
 }
