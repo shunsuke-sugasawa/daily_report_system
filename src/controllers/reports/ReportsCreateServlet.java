@@ -42,6 +42,8 @@ public class ReportsCreateServlet extends HttpServlet {
             EntityManager em = DBUtil.createEntityManager();
 
             Report r = new Report();
+            
+            r.setLike_count(0);
 
             r.setEmployee((Employee)request.getSession().getAttribute("login_employee"));
 

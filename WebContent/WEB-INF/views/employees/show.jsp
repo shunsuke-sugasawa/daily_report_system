@@ -37,7 +37,6 @@
                             <td>
                                 <fmt:formatDate value="${employee.updated_at}" pattern="yyyy-MM-dd HH:mm:ss" />
                             </td>
-                            <th>いいね数</th>
                         </tr>
                     </tbody>
                 </table>
